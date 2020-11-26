@@ -59,8 +59,6 @@ const createFormGroup = ({
   }
   const validity = createElement('span', validityAttrs)
 
-  const example = createElement('p', { className: 'exemple  basis-100' })
-
   const appendToFormGroup = appendTo(formGroup)
   appendToFormGroup(labelEl)
   appendToFormGroup(inputGroup)
@@ -68,7 +66,6 @@ const createFormGroup = ({
   const appendToInputGroup = appendTo(inputGroup)
   appendToInputGroup(input)
   appendToInputGroup(validity)
-  appendToInputGroup(example)
 
   return formGroup
 }
