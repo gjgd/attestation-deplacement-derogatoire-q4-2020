@@ -94,15 +94,6 @@ export async function generatePdf (profile, reasons, pdfBase) {
   drawText(`${profile.datesortie}`, 76, 92, 11)
   drawText(`${profile.heuresortie}`, 246, 92, 11)
 
-  // const shortCreationDate = `${creationDate.split('/')[0]}/${
-  //   creationDate.split('/')[1]
-  // }`
-  // drawText(shortCreationDate, 314, 189, locationSize)
-
-  // // Date création
-  // drawText('Date de création:', 479, 130, 6)
-  // drawText(`${creationDate} à ${creationHour}`, 470, 124, 6)
-
   const qrTitle1 = 'QR-code contenant les informations '
   const qrTitle2 = 'de votre attestation numérique'
 
