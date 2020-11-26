@@ -9,7 +9,6 @@ import SecureLS from 'secure-ls'
 const secureLS = new SecureLS({ encodingType: 'aes' })
 const clearDataSnackbar = $('#snackbar-cleardata')
 const storeDataInput = $('#field-storedata')
-
 const conditions = {
   '#field-firstname': {
     length: 1,
@@ -104,6 +103,7 @@ export function setReleaseDateTime (releaseDateInput) {
   const loadedDate = new Date()
   releaseDateInput.value = getFormattedDate(loadedDate)
 }
+
 export function toAscii (string) {
   if (typeof string !== 'string') {
     throw new Error('Need string')
@@ -112,6 +112,7 @@ export function toAscii (string) {
   const asciiString = accentsRemoved.replace(/[^\x00-\x7F]/g, '') // eslint-disable-line no-control-regex
   return asciiString
 }
+
 export function getProfile (formInputs) {
   const fields = {}
   for (const field of formInputs) {
@@ -169,12 +170,11 @@ export function prepareInputs (formInputs, reasonInputs, reasonFieldset, reasonA
         if (lsProfile) input.value = lsProfile[input.name]
     }
     const exempleElt = input.parentNode.parentNode.querySelector('.exemple')
-    const validitySpan = input.parentNode.parentNode.querySelector('.validity')
     if (input.placeholder && exempleElt) {
       input.addEventListener('input', (event) => {
         if (input.value) {
+          updateSecureLS(formInputs)
           exempleElt.innerHTML = 'ex.&nbsp;: ' + input.placeholder
-          validitySpan.removeAttribute('hidden')
         } else {
           exempleElt.innerHTML = ''
         }
@@ -233,14 +233,7 @@ export function prepareInputs (formInputs, reasonInputs, reasonFieldset, reasonA
       .replace(':', '-')
 
     downloadBlob(pdfBlob, `attestation-${creationDate}_${creationHour}.pdf`)
-
-    snackbar.classList.remove('d-none')
-    setTimeout(() => snackbar.classList.add('show'), 100)
-
-    setTimeout(function () {
-      snackbar.classList.remove('show')
-      setTimeout(() => snackbar.classList.add('d-none'), 500)
-    }, 6000)
+    showSnackbar(snackbar, 6000)
   })
 }
 
