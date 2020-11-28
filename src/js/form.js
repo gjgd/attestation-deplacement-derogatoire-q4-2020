@@ -11,7 +11,6 @@ const createTitle = () => {
   const p = createElement('p', { className: 'msg-info', innerHTML: 'Tous les champs sont obligatoires.' })
   return [h2, p]
 }
-// createElement('div', { className: 'form-group' })
 
 const createFormGroup = ({
   autocomplete = false,
@@ -60,8 +59,6 @@ const createFormGroup = ({
   }
   const validity = createElement('span', validityAttrs)
 
-  const example = createElement('p', { className: 'exemple  basis-100' })
-
   const appendToFormGroup = appendTo(formGroup)
   appendToFormGroup(labelEl)
   appendToFormGroup(inputGroup)
@@ -69,7 +66,6 @@ const createFormGroup = ({
   const appendToInputGroup = appendTo(inputGroup)
   appendToInputGroup(input)
   appendToInputGroup(validity)
-  appendToInputGroup(example)
 
   return formGroup
 }
