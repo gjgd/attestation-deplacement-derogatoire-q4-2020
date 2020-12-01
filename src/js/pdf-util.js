@@ -74,9 +74,11 @@ export async function generatePdf (profile, reasons, pdfBase) {
   drawText(placeofbirth, 214, 684)
   drawText(`${address} ${zipcode} ${city}`, 104, 665)
 
-  reasons.split(', ').forEach((reason) => {
-    drawText('x', 47, ys[reason], 12)
-  })
+  reasons
+    .split(', ')
+    .forEach(reason => {
+      drawText('x', 47, ys[reason], 12)
+    })
 
   let locationSize = getIdealFontSize(font, profile.city, 83, 7, 11)
 
@@ -99,7 +101,7 @@ export async function generatePdf (profile, reasons, pdfBase) {
 
   const qrImage = await pdfDoc.embedPng(generatedQR)
 
-  page1.drawText(`${qrTitle1}\n${qrTitle2}`, {
+  page1.drawText(qrTitle1 + '\n' + qrTitle2, {
     x: 440,
     y: 130,
     size: 6,
